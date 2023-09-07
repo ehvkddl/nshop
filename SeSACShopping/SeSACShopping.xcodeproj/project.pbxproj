@@ -12,6 +12,7 @@
 		EA7ED2A92AA9AC1C00AAED80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A82AA9AC1C00AAED80 /* ViewController.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
 		EA7ED2B12AA9AC1F00AAED80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AF2AA9AC1F00AAED80 /* LaunchScreen.storyboard */; };
+		EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA7ED2B02AA9AC1F00AAED80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA7ED2B22AA9AC1F00AAED80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +59,20 @@
 				EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */,
 				EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */,
 				EA7ED2A82AA9AC1C00AAED80 /* ViewController.swift */,
+				EA7ED2C52AA9BEA700AAED80 /* Base */,
 				EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */,
 				EA7ED2AF2AA9AC1F00AAED80 /* LaunchScreen.storyboard */,
 				EA7ED2B22AA9AC1F00AAED80 /* Info.plist */,
 			);
 			path = SeSACShopping;
+			sourceTree = "<group>";
+		};
+		EA7ED2C52AA9BEA700AAED80 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 				EA7ED2A92AA9AC1C00AAED80 /* ViewController.swift in Sources */,
 				EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
+				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
