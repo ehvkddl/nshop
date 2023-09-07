@@ -24,6 +24,8 @@ class TabBarController: UITabBarController {
     }
     
     private func designTabBar() {
+        self.tabBar.tintColor = UIColor.BaseColor.text
+        
         if let items = self.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "magnifyingglass")
             items[0].image = UIImage(systemName: "magnifyingglass")

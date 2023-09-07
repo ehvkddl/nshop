@@ -15,6 +15,7 @@
 		EA7ED2BE2AA9B8E900AAED80 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2BD2AA9B8E900AAED80 /* WishListViewController.swift */; };
 		EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */; };
 		EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */; };
+		EA7ED2CA2AAA2ADB00AAED80 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		EA7ED2BD2AA9B8E900AAED80 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
 		EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */,
 				EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */,
 				EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */,
+				EA7ED2C62AAA2ABC00AAED80 /* Extensions */,
 				EA7ED2C52AA9BEA700AAED80 /* Base */,
 				EA7ED2BA2AA9B7B500AAED80 /* Viewcontrollers */,
 				EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */,
@@ -87,6 +90,14 @@
 				EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		EA7ED2C62AAA2ABC00AAED80 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 				EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
 				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
+				EA7ED2CA2AAA2ADB00AAED80 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
