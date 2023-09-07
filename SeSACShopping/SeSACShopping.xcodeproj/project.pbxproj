@@ -20,6 +20,7 @@
 		EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D02AAA47B000AAED80 /* URL+.swift */; };
 		EA7ED2D32AAA508F00AAED80 /* SearchAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D22AAA508F00AAED80 /* SearchAPIManager.swift */; };
 		EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D42AAA567400AAED80 /* Product.swift */; };
+		EA7ED2DB2AAA63A400AAED80 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA7ED2DA2AAA63A400AAED80 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7ED2DB2AAA63A400AAED80 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +138,9 @@
 			dependencies = (
 			);
 			name = SeSACShopping;
+			packageProductDependencies = (
+				EA7ED2DA2AAA63A400AAED80 /* SnapKit */,
+			);
 			productName = SeSACShopping;
 			productReference = EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +169,9 @@
 				Base,
 			);
 			mainGroup = EA7ED2982AA9AC1C00AAED80;
+			packageReferences = (
+				EA7ED2D92AAA63A400AAED80 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = EA7ED2A22AA9AC1C00AAED80 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -416,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA7ED2D92AAA63A400AAED80 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA7ED2DA2AAA63A400AAED80 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA7ED2D92AAA63A400AAED80 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA7ED2992AA9AC1C00AAED80 /* Project object */;
 }
