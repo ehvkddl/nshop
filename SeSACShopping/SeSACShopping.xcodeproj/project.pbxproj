@@ -16,6 +16,9 @@
 		EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */; };
 		EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */; };
 		EA7ED2CA2AAA2ADB00AAED80 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */; };
+		EA7ED2CD2AAA434300AAED80 /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2CC2AAA434300AAED80 /* SearchEndpoint.swift */; };
+		EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D02AAA47B000AAED80 /* URL+.swift */; };
+		EA7ED2D32AAA508F00AAED80 /* SearchAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D22AAA508F00AAED80 /* SearchAPIManager.swift */; };
 		EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D42AAA567400AAED80 /* Product.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +34,9 @@
 		EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		EA7ED2CC2AAA434300AAED80 /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
+		EA7ED2D02AAA47B000AAED80 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		EA7ED2D22AAA508F00AAED80 /* SearchAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIManager.swift; sourceTree = "<group>"; };
 		EA7ED2D42AAA567400AAED80 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7ED2C92AAA2ADB00AAED80 /* UIColor+.swift */,
+				EA7ED2D02AAA47B000AAED80 /* URL+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -107,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7ED2CC2AAA434300AAED80 /* SearchEndpoint.swift */,
-				EA7ED2D22AAA508F00AAED80 /* NaverAPIManager.swift */,
+				EA7ED2D22AAA508F00AAED80 /* SearchAPIManager.swift */,
 				EA7ED2D42AAA567400AAED80 /* Product.swift */,
 			);
 			path = Network;
@@ -188,8 +195,11 @@
 				EA7ED2BC2AA9B7F900AAED80 /* ProductSearchingViewController.swift in Sources */,
 				EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */,
 				EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */,
+				EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
 				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
+				EA7ED2D32AAA508F00AAED80 /* SearchAPIManager.swift in Sources */,
+				EA7ED2CD2AAA434300AAED80 /* SearchEndpoint.swift in Sources */,
 				EA7ED2CA2AAA2ADB00AAED80 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
