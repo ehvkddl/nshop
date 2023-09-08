@@ -11,6 +11,9 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        configureCell()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {

@@ -28,7 +28,7 @@ class ProductSearchingViewController: BaseViewController {
     lazy var productCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        view.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         
         view.delegate = self
         view.dataSource = self
@@ -78,8 +78,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .yellow
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         return cell
     }
     
@@ -89,7 +88,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         let width = UIScreen.main.bounds.width - (spacing * 3)
         
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: width / 2, height: (width / 2) * 1.5)
+        layout.itemSize = CGSize(width: width / 2, height: (width / 2) * 1.47)
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         layout.minimumLineSpacing = spacing
         

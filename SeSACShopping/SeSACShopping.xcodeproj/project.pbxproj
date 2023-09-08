@@ -22,6 +22,7 @@
 		EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D42AAA567400AAED80 /* Product.swift */; };
 		EA7ED2D72AAA630F00AAED80 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2D62AAA630F00AAED80 /* BaseCollectionViewCell.swift */; };
 		EA7ED2DB2AAA63A400AAED80 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA7ED2DA2AAA63A400AAED80 /* SnapKit */; };
+		EA7ED2E22AAB4F3B00AAED80 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2E12AAB4F3B00AAED80 /* ProductCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		EA7ED2D22AAA508F00AAED80 /* SearchAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIManager.swift; sourceTree = "<group>"; };
 		EA7ED2D42AAA567400AAED80 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		EA7ED2D62AAA630F00AAED80 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA7ED2E12AAB4F3B00AAED80 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		EA7ED2D82AAA635D00AAED80 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EA7ED2E12AAB4F3B00AAED80 /* ProductCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */,
 				EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */,
 				EA7ED2D72AAA630F00AAED80 /* BaseCollectionViewCell.swift in Sources */,
+				EA7ED2E22AAB4F3B00AAED80 /* ProductCollectionViewCell.swift in Sources */,
 				EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
 				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
