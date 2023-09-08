@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class ProductSearchingViewController: BaseViewController {
+    
+    var products: [Product] = []
 
     lazy var searchBar = {
         let view = UISearchBar()
@@ -65,6 +67,21 @@ class ProductSearchingViewController: BaseViewController {
 
 extension ProductSearchingViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        
+        guard let productName = searchBar.text, !productName.isEmpty else { return }
+        
+        SearchAPIManager().fetchProduct(name: productName) { data in
+
+            self.products = data.items
+
+            DispatchQueue.main.async {
+                self.productCollectionView.reloadData()
+            }
+        }
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
@@ -74,11 +91,19 @@ extension ProductSearchingViewController: UISearchBarDelegate {
 extension ProductSearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+        
+        let product = products[indexPath.item]
+        
+        cell.image.load(from: product.image)
+        cell.mallNameLabel.text = "[\(product.mallName)]"
+        cell.titleLabel.text = product.title.removeTag()
+        cell.lpriceLabel.text = product.lprice.setComma()
+        
         return cell
     }
     
