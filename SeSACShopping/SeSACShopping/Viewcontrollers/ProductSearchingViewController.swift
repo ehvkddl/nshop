@@ -27,6 +27,39 @@ class ProductSearchingViewController: BaseViewController {
         return view
     }()
     
+    let filterButtonStackView = {
+        let stackView = UIStackView()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        stackView.isHidden = true
+        
+        return stackView
+    }()
+    
+    let accuracyButton = {
+        let btn = FilterButton(title: "정확도")
+        return btn
+    }()
+    
+    let dateButton = {
+        let btn = FilterButton(title: "날짜순")
+        return btn
+    }()
+    
+    let hpriceButton = {
+        let btn = FilterButton(title: "가격높은순")
+        return btn
+    }()
+    
+    let lpriceButton = {
+        let btn = FilterButton(title: "가격낮은순")
+        return btn
+    }()
+    
     lazy var productCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
@@ -47,7 +80,8 @@ class ProductSearchingViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        [searchBar, productCollectionView].forEach { view.addSubview($0) }
+        [accuracyButton, dateButton, hpriceButton, lpriceButton].forEach { filterButtonStackView.addArrangedSubview($0) }
+        [searchBar, filterButtonStackView, productCollectionView].forEach { view.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -57,8 +91,13 @@ class ProductSearchingViewController: BaseViewController {
             make.size.height.equalTo(30)
         }
         
-        productCollectionView.snp.makeConstraints { make in
+        filterButtonStackView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.lessThanOrEqualToSuperview().inset(16)
+        }
+        
+        productCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(filterButtonStackView.snp.bottom).offset(8)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -77,6 +116,7 @@ extension ProductSearchingViewController: UISearchBarDelegate {
             self.products = data.items
 
             DispatchQueue.main.async {
+                self.filterButtonStackView.isHidden = false
                 self.productCollectionView.reloadData()
             }
         }
@@ -84,6 +124,10 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+        searchBar.text = ""
+        filterButtonStackView.isHidden = true
+        products = []
+        productCollectionView.reloadData()
     }
     
 }
