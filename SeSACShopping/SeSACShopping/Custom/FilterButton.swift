@@ -24,13 +24,12 @@ class FilterButton: UIButton {
     }
     
     func configure() {
+        setBasicUI()
+        
         setTitle(self.title, for: .normal)
         
-        layer.borderWidth = 1
         layer.borderColor = UIColor.systemGray.cgColor
         layer.cornerRadius = 8
-        
-        setTitleColor(UIColor.lightGray, for: .normal)
         
         if #available(iOS 15.0, *) {
             var config = UIButton.Configuration.plain()
@@ -49,6 +48,22 @@ class FilterButton: UIButton {
             
             contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         }
+    }
+    
+    func setSelectedUI() {
+        setTitleColor(UIColor.systemBackground, for: .normal)
+        print("select btn", currentTitleColor)
+        backgroundColor = .BaseColor.text
+        
+        layer.borderWidth = 0
+    }
+    
+    func setBasicUI() {
+        setTitleColor(UIColor.lightGray, for: .normal)
+        print("basic btn", currentTitleColor, terminator: " ")
+        backgroundColor = .clear
+        
+        layer.borderWidth = 1
     }
     
 }

@@ -8,6 +8,22 @@
 import UIKit
 import SnapKit
 
+enum SortType: Int, CaseIterable {
+    case sim
+    case date
+    case asc
+    case dsc
+    
+    var text: String {
+        switch self {
+        case .sim: return "sim"
+        case .date: return "date"
+        case .asc: return "asc"
+        case .dsc: return "dsc"
+        }
+    }
+}
+
 class ProductSearchingViewController: BaseViewController {
     
     var products: [Product] = []
@@ -27,7 +43,7 @@ class ProductSearchingViewController: BaseViewController {
         return view
     }()
     
-    let filterButtonStackView = {
+    let sortButtonStackView = {
         let stackView = UIStackView()
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,23 +58,29 @@ class ProductSearchingViewController: BaseViewController {
     
     let accuracyButton = {
         let btn = FilterButton(title: "정확도")
+        btn.tag = 0
         return btn
     }()
     
     let dateButton = {
         let btn = FilterButton(title: "날짜순")
+        btn.tag = 1
         return btn
     }()
     
     let hpriceButton = {
         let btn = FilterButton(title: "가격높은순")
+        btn.tag = 2
         return btn
     }()
     
     let lpriceButton = {
         let btn = FilterButton(title: "가격낮은순")
+        btn.tag = 3
         return btn
     }()
+    
+    lazy var sortButtons: [FilterButton] = [accuracyButton, dateButton, hpriceButton, lpriceButton]
     
     lazy var productCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
@@ -80,28 +102,55 @@ class ProductSearchingViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        [accuracyButton, dateButton, hpriceButton, lpriceButton].forEach { filterButtonStackView.addArrangedSubview($0) }
-        [searchBar, filterButtonStackView, productCollectionView].forEach { view.addSubview($0) }
+        sortButtons.forEach { $0.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)}
+        
+        sortButtons.forEach { sortButtonStackView.addArrangedSubview($0) }
+        [searchBar, sortButtonStackView, productCollectionView].forEach { view.addSubview($0) }
     }
     
     override func setConstraints() {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview().inset(8)
-            make.size.height.equalTo(30)
         }
         
-        filterButtonStackView.snp.makeConstraints { make in
+        sortButtonStackView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.horizontalEdges.lessThanOrEqualToSuperview().inset(16)
         }
         
         productCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(filterButtonStackView.snp.bottom).offset(8)
+            make.top.equalTo(sortButtonStackView.snp.bottom).offset(8)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
+}
+
+extension ProductSearchingViewController {
+    @objc private func sortButtonClicked(_ sender: UIButton) {
+        let sortType = SortType.allCases[sender.tag]
+        
+        sortButtons.forEach {
+            if $0.tag == sender.tag {
+                // 선택된 버튼 (색상 변경)
+                $0.setSelectedUI()
+            } else {
+                // 기본 버튼
+                $0.setBasicUI()
+                print("| clicked", $0.currentTitleColor)
+            }
+        }
+        print("-------------")
+        SearchAPIManager().fetchProduct(name: searchBar.text!, sort: sortType.text) { data in
+            self.products = data.items
+
+            DispatchQueue.main.async {
+                self.sortButtonStackView.isHidden = false
+                self.productCollectionView.reloadData()
+            }
+        }
+    }
 }
 
 extension ProductSearchingViewController: UISearchBarDelegate {
@@ -111,12 +160,13 @@ extension ProductSearchingViewController: UISearchBarDelegate {
         
         guard let productName = searchBar.text, !productName.isEmpty else { return }
         
-        SearchAPIManager().fetchProduct(name: productName) { data in
+        SearchAPIManager().fetchProduct(name: productName, sort: SortType.sim.text) { data in
 
             self.products = data.items
 
             DispatchQueue.main.async {
-                self.filterButtonStackView.isHidden = false
+                self.sortButtonStackView.isHidden = false
+                self.accuracyButton.setSelectedUI()
                 self.productCollectionView.reloadData()
             }
         }
@@ -125,7 +175,7 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = ""
-        filterButtonStackView.isHidden = true
+        sortButtonStackView.isHidden = true
         products = []
         productCollectionView.reloadData()
     }
@@ -158,7 +208,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: width / 2, height: (width / 2) * 1.47)
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: spacing, right: spacing)
         layout.minimumLineSpacing = spacing
         
         return layout
