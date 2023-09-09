@@ -26,6 +26,8 @@ enum SortType: Int, CaseIterable {
 
 class ProductSearchingViewController: BaseViewController {
     
+    let wishListRepository = WishListRepository()
+    
     var products: [Product] = []
 
     lazy var searchBar = {
@@ -197,6 +199,18 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         cell.mallNameLabel.text = "[\(product.mallName)]"
         cell.titleLabel.text = product.title.removeTag()
         cell.lpriceLabel.text = product.lprice.setComma()
+        
+        cell.wishListButtonClickedClosure = {
+            let item = WishList(
+                title: product.title,
+                link: product.link,
+                image: product.image,
+                lprice: product.lprice,
+                mallName: product.mallName
+            )
+            
+            self.wishListRepository.addItem(item)
+        }
         
         return cell
     }

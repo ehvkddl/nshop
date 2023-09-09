@@ -10,6 +10,8 @@ import SnapKit
 
 class ProductCollectionViewCell: BaseCollectionViewCell {
     
+    var wishListButtonClickedClosure: (() -> Void)?
+    
     let image = {
         let img = UIImageView()
         
@@ -69,6 +71,8 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
     }()
     
     override func configureCell() {
+        wishButton.addTarget(self, action: #selector(wishListButtonClicked), for: .touchUpInside)
+        
         [mallNameLabel, titleLabel, lpriceLabel].forEach { stackView.addArrangedSubview($0) }
         [image, wishButton, stackView].forEach { contentView.addSubview($0) }
     }
@@ -88,6 +92,14 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(image.snp.bottom).offset(7)
             make.horizontalEdges.equalTo(image).inset(3)
         }
+    }
+    
+}
+
+extension ProductCollectionViewCell {
+    
+    @objc func wishListButtonClicked() {
+        wishListButtonClickedClosure?()
     }
     
 }
