@@ -102,4 +102,11 @@ extension ProductCollectionViewCell {
         wishListButtonClickedClosure?()
     }
     
+    func setData(imageUrl: String, mallName: String, title: String, lprice: String) {
+        image.load(from: imageUrl)
+        mallNameLabel.text = "[\(mallName)]"
+        titleLabel.text = title.removeTag()
+        lpriceLabel.text = lprice.setComma()
+    }
+    
 }

@@ -193,10 +193,10 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         let product = products[indexPath.item]
         
-        cell.image.load(from: product.image)
-        cell.mallNameLabel.text = "[\(product.mallName)]"
-        cell.titleLabel.text = product.title.removeTag()
-        cell.lpriceLabel.text = product.lprice.setComma()
+        cell.setData(imageUrl: product.image,
+                     mallName: product.mallName,
+                     title: product.title,
+                     lprice: product.lprice)
         
         cell.wishListButtonClickedClosure = {
             let item = WishList(
