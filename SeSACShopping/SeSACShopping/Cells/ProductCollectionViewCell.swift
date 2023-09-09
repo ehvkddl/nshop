@@ -70,6 +70,12 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
         return stackView
     }()
     
+    override func prepareForReuse() {
+        image.image = nil
+        wishButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        wishButton.tintColor = .gray
+    }
+    
     override func configureCell() {
         wishButton.addTarget(self, action: #selector(wishListButtonClicked), for: .touchUpInside)
         
