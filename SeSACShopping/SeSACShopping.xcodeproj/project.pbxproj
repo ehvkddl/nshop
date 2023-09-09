@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EA3D4EE22AACBB4D001580FE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4EE12AACBB4D001580FE /* Realm */; };
 		EA3D4EE42AACBB4D001580FE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4EE32AACBB4D001580FE /* RealmSwift */; };
+		EA3D4EE72AACCB8B001580FE /* WishListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */; };
+		EA3D4EEA2AACDCE1001580FE /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EE92AACDCE1001580FE /* WishList.swift */; };
 		EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */; };
 		EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListRepository.swift; sourceTree = "<group>"; };
+		EA3D4EE92AACDCE1001580FE /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
 		EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA3D4EE52AACBCC4001580FE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D4EE82AACDCD3001580FE /* Table */,
+				EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		EA3D4EE82AACDCD3001580FE /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D4EE92AACDCE1001580FE /* WishList.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
 		EA7ED2982AA9AC1C00AAED80 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +114,7 @@
 				EA7ED2C12AA9BB0800AAED80 /* TabBarController.swift */,
 				EA7ED2C62AAA2ABC00AAED80 /* Extensions */,
 				EA7ED2CB2AAA2E0E00AAED80 /* Network */,
+				EA3D4EE52AACBCC4001580FE /* Database */,
 				EA7ED2E92AABB39100AAED80 /* Custom */,
 				EA7ED2C52AA9BEA700AAED80 /* Base */,
 				EA7ED2BA2AA9B7B500AAED80 /* Viewcontrollers */,
@@ -245,12 +267,14 @@
 				EA7ED2BC2AA9B7F900AAED80 /* ProductSearchingViewController.swift in Sources */,
 				EA7ED2C22AA9BB0800AAED80 /* TabBarController.swift in Sources */,
 				EA7ED2D52AAA567400AAED80 /* Product.swift in Sources */,
+				EA3D4EEA2AACDCE1001580FE /* WishList.swift in Sources */,
 				EA7ED2D72AAA630F00AAED80 /* BaseCollectionViewCell.swift in Sources */,
 				EA7ED2E22AAB4F3B00AAED80 /* ProductCollectionViewCell.swift in Sources */,
 				EA7ED2EB2AABB50B00AAED80 /* FilterButton.swift in Sources */,
 				EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
 				EA7ED2E82AAB8E0400AAED80 /* String+.swift in Sources */,
+				EA3D4EE72AACCB8B001580FE /* WishListRepository.swift in Sources */,
 				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
 				EA7ED2D32AAA508F00AAED80 /* SearchAPIManager.swift in Sources */,
 				EA7ED2E42AAB72C300AAED80 /* ReusableViewProtocol.swift in Sources */,
