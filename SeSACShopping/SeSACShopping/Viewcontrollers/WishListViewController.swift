@@ -28,6 +28,11 @@ class WishListViewController: BaseViewController {
         title = "찜목록"
         
         wishList = wishListRepository.fetch()
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        wishListCollectionView.reloadData()
     }
     
     override func configureView() {
@@ -57,7 +62,8 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         
         let item = wishList[indexPath.item]
         
-        cell.setData(imageUrl: item.image,
+        cell.setData(isWish: true,
+                     imageUrl: item.image,
                      mallName: item.mallName,
                      title: item.title,
                      lprice: item.lprice)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 import SnapKit
 
 enum SortType: Int, CaseIterable {
@@ -27,6 +28,7 @@ enum SortType: Int, CaseIterable {
 class ProductSearchingViewController: BaseViewController {
     
     let wishListRepository = WishListRepository()
+    var wishList: Results<WishList>?
     
     var products: [Product] = []
 
@@ -170,6 +172,10 @@ extension ProductSearchingViewController: UISearchBarDelegate {
                 self.productCollectionView.reloadData()
             }
         }
+        
+        if wishList == nil {
+            self.wishList = wishListRepository.fetch()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -193,7 +199,17 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         let product = products[indexPath.item]
         
-        cell.setData(imageUrl: product.image,
+        var isWish: Bool = false
+        
+        if let wishList = self.wishList {
+            let wish = wishList.where {
+                $0.productId == product.productId
+            }
+            isWish = wish.isEmpty ? false : true
+        }
+        
+        cell.setData(isWish: isWish,
+                     imageUrl: product.image,
                      mallName: product.mallName,
                      title: product.title,
                      lprice: product.lprice)
@@ -204,10 +220,13 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
                 link: product.link,
                 image: product.image,
                 lprice: product.lprice,
-                mallName: product.mallName
+                mallName: product.mallName,
+                productId: product.productId
             )
             
             self.wishListRepository.addItem(item)
+            
+            collectionView.reloadItems(at: [indexPath])
         }
         
         return cell

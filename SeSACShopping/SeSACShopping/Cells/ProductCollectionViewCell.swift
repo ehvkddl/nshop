@@ -102,11 +102,22 @@ extension ProductCollectionViewCell {
         wishListButtonClickedClosure?()
     }
     
-    func setData(imageUrl: String, mallName: String, title: String, lprice: String) {
+    func setData(
+        isWish: Bool,
+        imageUrl: String,
+        mallName: String,
+        title: String,
+        lprice: String
+    ) {
         image.load(from: imageUrl)
         mallNameLabel.text = "[\(mallName)]"
         titleLabel.text = title.removeTag()
         lpriceLabel.text = lprice.setComma()
+        
+        if isWish {
+            wishButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            wishButton.tintColor = .systemRed
+        }
     }
     
 }

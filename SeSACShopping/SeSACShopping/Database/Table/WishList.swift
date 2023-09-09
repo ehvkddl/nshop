@@ -15,13 +15,15 @@ class WishList: Object {
     @Persisted var image: String
     @Persisted var lprice: String
     @Persisted var mallName: String
+    @Persisted var productId: String
     
     convenience init(
         title: String,
         link: String,
         image: String,
         lprice: String,
-        mallName: String
+        mallName: String,
+        productId: String
     ) {
         self.init()
         
@@ -30,6 +32,7 @@ class WishList: Object {
         self.image = image
         self.lprice = lprice
         self.mallName = mallName
+        self.productId = productId
     }
     
 }
