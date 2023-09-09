@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class WishListViewController: BaseViewController {
 
+    let wishListRepository = WishListRepository()
+    var wishList: Results<WishList>!
+    
     private lazy var wishListCollectionView = {
         let view = ProductCollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
@@ -22,6 +26,8 @@ class WishListViewController: BaseViewController {
         super.viewDidLoad()
         
         title = "찜목록"
+        
+        wishList = wishListRepository.fetch()
     }
     
     override func configureView() {
@@ -43,11 +49,20 @@ class WishListViewController: BaseViewController {
 extension WishListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return wishList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+        
+        let item = wishList[indexPath.item]
+        
+        cell.setData(imageUrl: item.image,
+                     mallName: item.mallName,
+                     title: item.title,
+                     lprice: item.lprice)
+        
+        return cell
     }
     
 }
