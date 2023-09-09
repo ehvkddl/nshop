@@ -11,15 +11,15 @@ import SnapKit
 enum SortType: Int, CaseIterable {
     case sim
     case date
-    case asc
     case dsc
+    case asc
     
     var text: String {
         switch self {
         case .sim: return "sim"
         case .date: return "date"
-        case .asc: return "asc"
         case .dsc: return "dsc"
+        case .asc: return "asc"
         }
     }
 }
