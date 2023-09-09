@@ -13,6 +13,8 @@ class WishListViewController: BaseViewController {
     let wishListRepository = WishListRepository()
     var wishList: Results<WishList>!
     
+    var notificationToken: NotificationToken?
+    
     private lazy var wishListCollectionView = {
         let view = ProductCollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
@@ -29,10 +31,20 @@ class WishListViewController: BaseViewController {
         
         wishList = wishListRepository.fetch()
         
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        wishListCollectionView.reloadData()
+        notificationToken = wishList.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                self?.wishListCollectionView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                self?.wishListCollectionView.performBatchUpdates {
+                    self?.wishListCollectionView.deleteItems(at: deletions.map { IndexPath(item: $0, section: 0)})
+                    self?.wishListCollectionView.insertItems(at: insertions.map { IndexPath(item: $0, section: 0)})
+                    self?.wishListCollectionView.reloadItems(at: modifications.map { IndexPath(item: $0, section: 0)})
+                }
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
     
     override func configureView() {
