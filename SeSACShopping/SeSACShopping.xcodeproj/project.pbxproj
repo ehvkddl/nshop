@@ -11,6 +11,8 @@
 		EA3D4EE42AACBB4D001580FE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4EE32AACBB4D001580FE /* RealmSwift */; };
 		EA3D4EE72AACCB8B001580FE /* WishListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */; };
 		EA3D4EEA2AACDCE1001580FE /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EE92AACDCE1001580FE /* WishList.swift */; };
+		EA3D4EEC2AACE6FD001580FE /* ProductCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */; };
+		EA3D4EF02AACEBAE001580FE /* Layout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EEF2AACEBAE001580FE /* Layout+.swift */; };
 		EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */; };
 		EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListRepository.swift; sourceTree = "<group>"; };
 		EA3D4EE92AACDCE1001580FE /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
+		EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionView.swift; sourceTree = "<group>"; };
+		EA3D4EEF2AACEBAE001580FE /* Layout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+.swift"; sourceTree = "<group>"; };
 		EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				EA7ED2E52AAB895900AAED80 /* UIImageView+.swift */,
 				EA7ED2D02AAA47B000AAED80 /* URL+.swift */,
 				EA7ED2E72AAB8E0400AAED80 /* String+.swift */,
+				EA3D4EEF2AACEBAE001580FE /* Layout+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7ED2EA2AABB50B00AAED80 /* FilterButton.swift */,
+				EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */,
+				EA3D4EF02AACEBAE001580FE /* Layout+.swift in Sources */,
 				EA7ED2E62AAB895900AAED80 /* UIImageView+.swift in Sources */,
 				EA7ED2BE2AA9B8E900AAED80 /* WishListViewController.swift in Sources */,
 				EA7ED2BC2AA9B7F900AAED80 /* ProductSearchingViewController.swift in Sources */,
@@ -271,6 +278,7 @@
 				EA7ED2D72AAA630F00AAED80 /* BaseCollectionViewCell.swift in Sources */,
 				EA7ED2E22AAB4F3B00AAED80 /* ProductCollectionViewCell.swift in Sources */,
 				EA7ED2EB2AABB50B00AAED80 /* FilterButton.swift in Sources */,
+				EA3D4EEC2AACE6FD001580FE /* ProductCollectionView.swift in Sources */,
 				EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,
 				EA7ED2E82AAB8E0400AAED80 /* String+.swift in Sources */,

@@ -85,9 +85,7 @@ class ProductSearchingViewController: BaseViewController {
     lazy var sortButtons: [FilterButton] = [accuracyButton, dateButton, hpriceButton, lpriceButton]
     
     lazy var productCollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
-        
-        view.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        let view = ProductCollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
         view.delegate = self
         view.dataSource = self
@@ -213,19 +211,6 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         }
         
         return cell
-    }
-    
-    func productCollectionViewLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 16
-        let width = UIScreen.main.bounds.width - (spacing * 3)
-        
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: width / 2, height: (width / 2) * 1.47)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: spacing, right: spacing)
-        layout.minimumLineSpacing = spacing
-        
-        return layout
     }
     
 }
