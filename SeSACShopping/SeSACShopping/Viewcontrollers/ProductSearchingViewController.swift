@@ -27,10 +27,22 @@ enum SortType: Int, CaseIterable {
 
 class ProductSearchingViewController: BaseViewController {
     
+    let searchManager = SearchAPIManager()
+    
     let wishListRepository = WishListRepository()
     var wishList: Results<WishList>?
     
     var products: [Product] = []
+    
+    var page = 1
+    var isEnd: Bool {
+        page > total / 30
+    }
+    var total = 0
+    var start: Int {
+        return 30 * (page - 1) + 1
+    }
+    var sort: SortType = .sim
 
     lazy var searchBar = {
         let view = SeSACSearchBar()
@@ -83,6 +95,7 @@ class ProductSearchingViewController: BaseViewController {
         
         view.delegate = self
         view.dataSource = self
+        view.prefetchDataSource = self
         
         return view
     }()
@@ -128,8 +141,10 @@ class ProductSearchingViewController: BaseViewController {
 }
 
 extension ProductSearchingViewController {
+    
     @objc private func sortButtonClicked(_ sender: UIButton) {
-        let sortType = SortType.allCases[sender.tag]
+        page = 1
+        sort = SortType.allCases[sender.tag]
         
         sortButtons.forEach {
             if $0.tag == sender.tag {
@@ -142,15 +157,21 @@ extension ProductSearchingViewController {
             }
         }
         print("-------------")
-        SearchAPIManager().fetchProduct(name: searchBar.text!, sort: sortType.text) { data in
+        searchManager.fetchProduct(name: searchBar.text!, start: start, sort: sort.text) { data in
+            self.total = data.total
             self.products = data.items
 
             DispatchQueue.main.async {
-                self.sortButtonStackView.isHidden = false
                 self.productCollectionView.reloadData()
+                
+                if !self.products.isEmpty {
+                    self.sortButtonStackView.isHidden = false
+                    self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                }
             }
         }
     }
+    
 }
 
 extension ProductSearchingViewController: UISearchBarDelegate {
@@ -158,16 +179,26 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         
+        page = 1
+        sort = .sim
+        
+        sortButtonStackView.isHidden = true
+        
         guard let productName = searchBar.text, !productName.isEmpty else { return }
         
-        SearchAPIManager().fetchProduct(name: productName, sort: SortType.sim.text) { data in
-
+        searchManager.fetchProduct(name: productName, start: start, sort: sort.text) { data in
+            
+            self.total = data.total
             self.products = data.items
-
+            
             DispatchQueue.main.async {
-                self.sortButtonStackView.isHidden = false
-                self.accuracyButton.setSelectedUI()
                 self.productCollectionView.reloadData()
+                
+                if !self.products.isEmpty {
+                    self.sortButtonStackView.isHidden = false
+                    self.accuracyButton.setSelectedUI()
+                    self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                }
             }
         }
         
@@ -186,7 +217,7 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     
 }
 
-extension ProductSearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ProductSearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return products.count
@@ -235,6 +266,27 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         }
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if products.count - 1 == indexPath.item && page <= (total / 30) && isEnd == false {
+                page += 1
+                
+                guard let productName = searchBar.text, !productName.isEmpty else { return }
+                
+                searchManager.fetchProduct(name: productName, start: start, sort: sort.text) { data in
+                    self.total = data.total
+                    self.products.append(contentsOf: data.items)
+                    
+                    print("[total]", data.total, "  [start]", data.start, "  [display]", data.display)
+                    
+                    DispatchQueue.main.async {
+                        self.productCollectionView.reloadData()
+                    }
+                }
+            }
+        }
     }
     
 }

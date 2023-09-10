@@ -9,7 +9,7 @@ import Foundation
 
 protocol SearchAPIManagerProtocol: AnyObject {
     
-    func fetchProduct(name query: String, sort: String, completionHandler: @escaping (ProductData) -> Void)
+    func fetchProduct(name query: String, start: Int, sort: String, completionHandler: @escaping (ProductData) -> Void)
     
 }
 
@@ -20,7 +20,7 @@ final class SearchAPIManager: SearchAPIManagerProtocol {
         "X-Naver-Client-Secret": "5krHokeuun"
     ]
     
-    func fetchProduct(name query: String, sort: String, completionHandler: @escaping (ProductData) -> Void) {
+    func fetchProduct(name query: String, start: Int, sort: String, completionHandler: @escaping (ProductData) -> Void) {
         
         guard var components = URLComponents(string: SearchEndpoint.shop.requestURL) else {
             print("urlComponents 생성에 실패했습니다.")
@@ -28,9 +28,10 @@ final class SearchAPIManager: SearchAPIManagerProtocol {
         }
         let query = URLQueryItem(name: "query", value: query)
         let display = URLQueryItem(name: "display", value: "30")
+        let start = URLQueryItem(name: "start", value: String(start))
         let sort = URLQueryItem(name: "sort", value: sort)
         
-        components.queryItems = [query, display, sort]
+        components.queryItems = [query, display, start, sort]
         
         guard let url = components.url else {
             print("urlComponents 변환에 실패했습니다.")
