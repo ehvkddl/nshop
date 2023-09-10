@@ -216,14 +216,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
             if let item = wishItem {
                 self.wishListRepository.deleteItem(item)
             } else {
-                let item = WishList(
-                    title: product.title,
-                    link: product.link,
-                    image: product.image,
-                    lprice: product.lprice,
-                    mallName: product.mallName,
-                    productId: product.productId
-                )
+                let item = self.wishListRepository.convertToWishList(from: product)
                 
                 self.wishListRepository.addItem(item)
             }
@@ -239,8 +232,15 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         let vc = ProductDetailViewController()
         
+        vc.index = indexPath.item
         vc.productTitle = product.title
         vc.productId = product.productId
+        
+        vc.wishListButtonClickedClosure = { index in
+            let item = self.wishListRepository.convertToWishList(from: product)
+            
+            self.wishListRepository.addItem(item)
+        }
         
         navigationController?.pushViewController(vc, animated: true)
     }

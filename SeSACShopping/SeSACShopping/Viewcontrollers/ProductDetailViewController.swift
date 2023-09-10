@@ -10,8 +10,14 @@ import WebKit
 
 class ProductDetailViewController: BaseViewController {
 
+    let wishListRepository = WishListRepository()
+    
     var productTitle: String?
     var productId: String?
+    
+    var index: Int?
+    
+    var wishListButtonClickedClosure: ((Int) -> Void)?
     
     var webView = WKWebView()
     
@@ -44,16 +50,47 @@ class ProductDetailViewController: BaseViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.standardAppearance = appearance
-
+        
         let wishButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(wishListButtonClicked))
+        
+        guard let id = self.productId else { return }
+        let isWish = wishListRepository.checkItemExistence(by: id).isWish
+        
         navigationItem.rightBarButtonItem = wishButton
+        
+        setWishButtonImage(isWish: isWish)
     }
     
     @objc func wishListButtonClicked() {
-        print("wish!")
+        guard let id = self.productId else { return }
+        let (isWish, item) = wishListRepository.checkItemExistence(by: id)
+        
+        if let item = item {
+            wishListRepository.deleteItem(item)
+        } else {
+            guard let index = self.index else { return }
+            
+            wishListButtonClickedClosure?(index)
+        }
+        
+        setWishButtonImage(isWish: !isWish)
+    }
+    
+    func setWishButtonImage(isWish: Bool) {
+        let image: UIImage?
+        
+        if isWish {
+            image = UIImage(systemName: "heart.fill")
+            navigationItem.rightBarButtonItem?.tintColor = .red
+        } else {
+            image = UIImage(systemName: "heart")
+            navigationItem.rightBarButtonItem?.tintColor = .BaseColor.text
+        }
+        
+        navigationItem.rightBarButtonItem?.image = image
     }
     
     func loadWebView(with id: String?) {
