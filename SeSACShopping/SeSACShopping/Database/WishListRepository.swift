@@ -33,4 +33,15 @@ class WishListRepository: WishListRepositoryProtocol {
         }
     }
     
+    func deleteItem(_ item: WishList) {
+        do {
+            try realm.write {
+                realm.delete(item)
+                print(item, "삭제완료!")
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
 }

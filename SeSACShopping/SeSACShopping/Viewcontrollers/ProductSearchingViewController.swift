@@ -200,12 +200,16 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         let product = products[indexPath.item]
         
         var isWish: Bool = false
+        var wishProduct: WishList?
         
         if let wishList = self.wishList {
             let wish = wishList.where {
                 $0.productId == product.productId
             }
-            isWish = wish.isEmpty ? false : true
+            if !wish.isEmpty {
+                isWish = true
+                wishProduct = wish.first!
+            }
         }
         
         cell.setData(isWish: isWish,
@@ -215,16 +219,20 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
                      lprice: product.lprice)
         
         cell.wishListButtonClickedClosure = {
-            let item = WishList(
-                title: product.title,
-                link: product.link,
-                image: product.image,
-                lprice: product.lprice,
-                mallName: product.mallName,
-                productId: product.productId
-            )
-            
-            self.wishListRepository.addItem(item)
+            if !isWish {
+                let item = WishList(
+                    title: product.title,
+                    link: product.link,
+                    image: product.image,
+                    lprice: product.lprice,
+                    mallName: product.mallName,
+                    productId: product.productId
+                )
+                
+                self.wishListRepository.addItem(item)
+            } else {
+                self.wishListRepository.deleteItem(wishProduct!)
+            }
             
             collectionView.reloadItems(at: [indexPath])
         }
