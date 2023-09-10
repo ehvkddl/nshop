@@ -80,6 +80,10 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
                      title: item.title,
                      lprice: item.lprice)
         
+        cell.wishListButtonClickedClosure = {
+            self.wishListRepository.deleteItem(item)
+        }
+        
         return cell
     }
     

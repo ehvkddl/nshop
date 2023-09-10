@@ -101,6 +101,12 @@ class ProductSearchingViewController: BaseViewController {
         title = "상품 검색"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        productCollectionView.reloadData()
+    }
+    
     override func configureView() {
         super.configureView()
         
