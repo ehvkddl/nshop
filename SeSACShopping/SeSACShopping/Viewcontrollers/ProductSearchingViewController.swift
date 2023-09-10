@@ -30,18 +30,18 @@ class ProductSearchingViewController: BaseViewController {
     let searchManager = SearchAPIManager()
     
     let wishListRepository = WishListRepository()
-    var wishList: Results<WishList>?
     
     var products: [Product] = []
     
     var page = 1
     var isEnd: Bool {
-        page > total / 30
+        page > total / display
     }
     var total = 0
     var start: Int {
-        return 30 * (page - 1) + 1
+        return display * (page - 1) + 1
     }
+    let display = 30
     var sort: SortType = .sim
 
     lazy var searchBar = {
@@ -142,6 +142,24 @@ class ProductSearchingViewController: BaseViewController {
 
 extension ProductSearchingViewController {
     
+    func firstFetch() {
+        guard let productName = searchBar.text, !productName.isEmpty else { return }
+        
+        searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { data in
+            self.total = data.total
+            self.products = data.items
+
+            DispatchQueue.main.async {
+                self.productCollectionView.reloadData()
+                
+                if !self.products.isEmpty {
+                    self.sortButtonStackView.isHidden = false
+                    self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                }
+            }
+        }
+    }
+    
     @objc private func sortButtonClicked(_ sender: UIButton) {
         page = 1
         sort = SortType.allCases[sender.tag]
@@ -157,19 +175,8 @@ extension ProductSearchingViewController {
             }
         }
         print("-------------")
-        searchManager.fetchProduct(name: searchBar.text!, start: start, sort: sort.text) { data in
-            self.total = data.total
-            self.products = data.items
 
-            DispatchQueue.main.async {
-                self.productCollectionView.reloadData()
-                
-                if !self.products.isEmpty {
-                    self.sortButtonStackView.isHidden = false
-                    self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-                }
-            }
-        }
+        firstFetch()
     }
     
 }
@@ -183,28 +190,9 @@ extension ProductSearchingViewController: UISearchBarDelegate {
         sort = .sim
         
         sortButtonStackView.isHidden = true
-        
-        guard let productName = searchBar.text, !productName.isEmpty else { return }
-        
-        searchManager.fetchProduct(name: productName, start: start, sort: sort.text) { data in
-            
-            self.total = data.total
-            self.products = data.items
-            
-            DispatchQueue.main.async {
-                self.productCollectionView.reloadData()
-                
-                if !self.products.isEmpty {
-                    self.sortButtonStackView.isHidden = false
-                    self.accuracyButton.setSelectedUI()
-                    self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-                }
-            }
-        }
-        
-        if wishList == nil {
-            self.wishList = wishListRepository.fetch()
-        }
+        self.accuracyButton.setSelectedUI()
+
+        firstFetch()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -270,12 +258,12 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if products.count - 1 == indexPath.item && page <= (total / 30) && isEnd == false {
+            if products.count - 1 == indexPath.item && page <= (total / display) && isEnd == false {
                 page += 1
                 
                 guard let productName = searchBar.text, !productName.isEmpty else { return }
                 
-                searchManager.fetchProduct(name: productName, start: start, sort: sort.text) { data in
+                searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { data in
                     self.total = data.total
                     self.products.append(contentsOf: data.items)
                     
