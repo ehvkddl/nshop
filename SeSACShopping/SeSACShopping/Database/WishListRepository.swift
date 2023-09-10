@@ -13,7 +13,7 @@ protocol WishListRepositoryProtocol: AnyObject {
     func fetch() -> Results<WishList>
     func addItem(_ item: WishList)
     func deleteItem(_ item: WishList)
-    func checkItemExistence(by id: String) -> (Bool, WishList?)
+    func checkItemExistence(by id: String) -> (isWish: Bool, item: WishList?)
     
 }
 
@@ -47,7 +47,7 @@ class WishListRepository: WishListRepositoryProtocol {
         }
     }
     
-    func checkItemExistence(by id: String) -> (Bool, WishList?) {
+    func checkItemExistence(by id: String) -> (isWish: Bool, item: WishList?) {
         let wish = wishList.where {
             $0.productId == id
         }
