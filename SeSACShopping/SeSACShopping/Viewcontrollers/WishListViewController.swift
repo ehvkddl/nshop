@@ -15,6 +15,13 @@ class WishListViewController: BaseViewController {
     
     var notificationToken: NotificationToken?
     
+    lazy var searchBar = {
+        let view = SeSACSearchBar()
+        view.delegate = self
+        view.placeholder = "찜한 상품을 찾아보세요!"
+        return view
+    }()
+    
     private lazy var wishListCollectionView = {
         let view = ProductCollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
         
@@ -50,16 +57,26 @@ class WishListViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        [wishListCollectionView].forEach { view.addSubview($0) }
+        [searchBar, wishListCollectionView].forEach { view.addSubview($0) }
     }
     
     override func setConstraints() {
         super.setConstraints()
         
+        searchBar.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview().inset(8)
+        }
+        
         wishListCollectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+}
+
+extension WishListViewController: UISearchBarDelegate {
     
 }
 

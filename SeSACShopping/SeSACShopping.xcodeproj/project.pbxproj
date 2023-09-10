@@ -14,6 +14,7 @@
 		EA3D4EEC2AACE6FD001580FE /* ProductCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */; };
 		EA3D4EF02AACEBAE001580FE /* Layout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EEF2AACEBAE001580FE /* Layout+.swift */; };
 		EA3D4EF22AADCBC3001580FE /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EF12AADCBC3001580FE /* ProductDetailViewController.swift */; };
+		EA3D4EF72AAE2A77001580FE /* SeSACSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EF62AAE2A77001580FE /* SeSACSearchBar.swift */; };
 		EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */; };
 		EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionView.swift; sourceTree = "<group>"; };
 		EA3D4EEF2AACEBAE001580FE /* Layout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+.swift"; sourceTree = "<group>"; };
 		EA3D4EF12AADCBC3001580FE /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		EA3D4EF62AAE2A77001580FE /* SeSACSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchBar.swift; sourceTree = "<group>"; };
 		EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				EA7ED2EA2AABB50B00AAED80 /* FilterButton.swift */,
 				EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */,
+				EA3D4EF62AAE2A77001580FE /* SeSACSearchBar.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */,
 				EA3D4EF02AACEBAE001580FE /* Layout+.swift in Sources */,
+				EA3D4EF72AAE2A77001580FE /* SeSACSearchBar.swift in Sources */,
 				EA7ED2E62AAB895900AAED80 /* UIImageView+.swift in Sources */,
 				EA7ED2BE2AA9B8E900AAED80 /* WishListViewController.swift in Sources */,
 				EA7ED2BC2AA9B7F900AAED80 /* ProductSearchingViewController.swift in Sources */,

@@ -33,17 +33,9 @@ class ProductSearchingViewController: BaseViewController {
     var products: [Product] = []
 
     lazy var searchBar = {
-        let view = UISearchBar()
-        
+        let view = SeSACSearchBar()
         view.delegate = self
-        
-        view.searchBarStyle = .minimal
-        view.setValue("취소", forKey: "cancelButtonText")
-        view.showsCancelButton = true
-        view.tintColor = .BaseColor.text
-        
         view.placeholder = "어떤 상품을 찾고 계시나요?"
-        
         return view
     }()
     
