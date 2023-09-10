@@ -14,6 +14,7 @@ protocol WishListRepositoryProtocol: AnyObject {
     func addItem(_ item: WishList)
     func deleteItem(_ item: WishList)
     func checkItemExistence(by id: String) -> (isWish: Bool, item: WishList?)
+    func convertToWishList(from product: Product) -> WishList
     
 }
 
@@ -57,4 +58,13 @@ class WishListRepository: WishListRepositoryProtocol {
         return (true, item)
     }
     
+    func convertToWishList(from product: Product) -> WishList {
+        let item = WishList(title: product.title,
+                            link: product.link,
+                            image: product.image,
+                            lprice: product.lprice,
+                            mallName: product.mallName,
+                            productId: product.productId)
+        return item
+    }
 }
