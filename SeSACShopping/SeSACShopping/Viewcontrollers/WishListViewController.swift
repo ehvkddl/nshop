@@ -11,7 +11,11 @@ import RealmSwift
 class WishListViewController: BaseViewController {
 
     let wishListRepository = WishListRepository()
-    var wishList: Results<WishList>!
+    var wishList: Results<WishList>! {
+        didSet {
+            wishListCollectionView.reloadData()
+        }
+    }
     
     var notificationToken: NotificationToken?
     
@@ -77,6 +81,20 @@ class WishListViewController: BaseViewController {
 }
 
 extension WishListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            wishList = wishListRepository.fetch()
+            return
+        }
+        wishList = wishListRepository.checkItemExistence(by: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchBar.text = ""
+        wishList = wishListRepository.fetch()
+    }
     
 }
 
