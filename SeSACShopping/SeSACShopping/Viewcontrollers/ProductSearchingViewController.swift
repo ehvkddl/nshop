@@ -234,4 +234,15 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = products[indexPath.item]
+        
+        let vc = ProductDetailViewController()
+        
+        vc.productTitle = product.title
+        vc.productId = product.productId
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

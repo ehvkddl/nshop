@@ -87,4 +87,15 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = wishList[indexPath.item]
+        
+        let vc = ProductDetailViewController()
+        
+        vc.productTitle = item.title
+        vc.productId = item.productId
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
