@@ -198,19 +198,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         
         let product = products[indexPath.item]
-        
-        var isWish: Bool = false
-        var wishProduct: WishList?
-        
-        if let wishList = self.wishList {
-            let wish = wishList.where {
-                $0.productId == product.productId
-            }
-            if !wish.isEmpty {
-                isWish = true
-                wishProduct = wish.first!
-            }
-        }
+        let (isWish, wishItem) = wishListRepository.checkItemExistence(by: product.productId)
         
         cell.setData(isWish: isWish,
                      imageUrl: product.image,
@@ -219,7 +207,9 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
                      lprice: product.lprice)
         
         cell.wishListButtonClickedClosure = {
-            if !isWish {
+            if let item = wishItem {
+                self.wishListRepository.deleteItem(item)
+            } else {
                 let item = WishList(
                     title: product.title,
                     link: product.link,
@@ -230,8 +220,6 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
                 )
                 
                 self.wishListRepository.addItem(item)
-            } else {
-                self.wishListRepository.deleteItem(wishProduct!)
             }
             
             collectionView.reloadItems(at: [indexPath])

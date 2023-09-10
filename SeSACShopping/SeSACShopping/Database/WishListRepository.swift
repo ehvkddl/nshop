@@ -12,12 +12,16 @@ protocol WishListRepositoryProtocol: AnyObject {
     
     func fetch() -> Results<WishList>
     func addItem(_ item: WishList)
+    func deleteItem(_ item: WishList)
+    func checkItemExistence(by id: String) -> (Bool, WishList?)
     
 }
 
 class WishListRepository: WishListRepositoryProtocol {
     
     private let realm = try! Realm()
+    
+    private lazy var wishList: Results<WishList>! = self.fetch()
     
     func fetch() -> Results<WishList> {
         return realm.objects(WishList.self)
@@ -37,11 +41,20 @@ class WishListRepository: WishListRepositoryProtocol {
         do {
             try realm.write {
                 realm.delete(item)
-                print(item, "삭제완료!")
             }
         } catch {
             print(error)
         }
+    }
+    
+    func checkItemExistence(by id: String) -> (Bool, WishList?) {
+        let wish = wishList.where {
+            $0.productId == id
+        }
+        
+        guard let item = wish.first else { return (false, nil) }
+        
+        return (true, item)
     }
     
 }
