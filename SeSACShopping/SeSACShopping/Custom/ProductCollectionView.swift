@@ -13,6 +13,11 @@ class ProductCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
         
         register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        
+        if #available(iOS 15.0, *) { }
+        else {
+            backgroundColor = .systemBackground
+        }
     }
     
     required init?(coder: NSCoder) {
