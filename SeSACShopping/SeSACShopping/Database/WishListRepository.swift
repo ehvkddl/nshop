@@ -26,7 +26,7 @@ class WishListRepository: WishListRepositoryProtocol {
     private lazy var wishList: Results<WishList>! = self.fetch()
     
     func fetch() -> Results<WishList> {
-        return realm.objects(WishList.self)
+        return realm.objects(WishList.self).sorted(byKeyPath: "_id", ascending: false)
     }
     
     func addItem(_ item: WishList) {
