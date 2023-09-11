@@ -35,6 +35,11 @@ class WishListViewController: BaseViewController {
         return view
     }()
     
+    let noWishView = {
+        let view = EmptyView(image: UIImage(systemName: "xmark.bin"), text: "찜한 상품이 없어요")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +66,7 @@ class WishListViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        [searchBar, wishListCollectionView].forEach { view.addSubview($0) }
+        [searchBar, wishListCollectionView, noWishView].forEach { view.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -73,6 +78,11 @@ class WishListViewController: BaseViewController {
         }
         
         wishListCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        noWishView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -101,6 +111,8 @@ extension WishListViewController: UISearchBarDelegate {
 extension WishListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        noWishView.isHidden = wishList.isEmpty ? false : true
+        
         return wishList.count
     }
     
