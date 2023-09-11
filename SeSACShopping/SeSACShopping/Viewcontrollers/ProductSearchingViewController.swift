@@ -181,7 +181,6 @@ extension ProductSearchingViewController {
                     
                     self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
                 } else {
-                    print("no data")
                     self.informationView.isHidden = true
                     self.noDataView.isHidden = false
                 }
@@ -196,14 +195,12 @@ extension ProductSearchingViewController {
         sortButtons.forEach {
             if $0.tag == sender.tag {
                 // 선택된 버튼 (색상 변경)
-                $0.setSelectedUI()
+                $0.configure(isSelected: true)
             } else {
                 // 기본 버튼
-                $0.setBasicUI()
-                print("| clicked", $0.currentTitleColor)
+                $0.configure(isSelected: false)
             }
         }
-        print("-------------")
 
         firstFetch()
     }
@@ -219,7 +216,7 @@ extension ProductSearchingViewController: UISearchBarDelegate {
         sort = .sim
         
         sortButtonStackView.isHidden = true
-        self.accuracyButton.setSelectedUI()
+        self.accuracyButton.configure(isSelected: true)
 
         firstFetch()
     }
