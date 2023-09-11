@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "marqueelabel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cbpowell/MarqueeLabel",
+      "state" : {
+        "revision" : "bc00d4cbff7f6c416035e3d16c21885452cd159e",
+        "version" : "4.3.1"
+      }
+    },
+    {
+      "identity" : "notificationbanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Daltron/NotificationBanner.git",
+      "state" : {
+        "revision" : "1406ac60bcab58074fc969e9b4cb804679832c8e",
+        "version" : "3.2.1"
+      }
+    },
+    {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",

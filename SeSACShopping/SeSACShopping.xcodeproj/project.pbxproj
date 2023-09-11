@@ -19,6 +19,7 @@
 		EA3D4F362AAF242A001580FE /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F352AAF242A001580FE /* EmptyView.swift */; };
 		EA3D4F382AAF246F001580FE /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F372AAF246F001580FE /* BaseView.swift */; };
 		EA3D4F3C2AAF3C49001580FE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F3B2AAF3C49001580FE /* NetworkError.swift */; };
+		EA3D4F3F2AAF4287001580FE /* NotificationBannerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4F3E2AAF4287001580FE /* NotificationBannerSwift */; };
 		EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */; };
 		EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3D4EE42AACBB4D001580FE /* RealmSwift in Frameworks */,
+				EA3D4F3F2AAF4287001580FE /* NotificationBannerSwift in Frameworks */,
 				EA3D4EE22AACBB4D001580FE /* Realm in Frameworks */,
 				EA7ED2DB2AAA63A400AAED80 /* SnapKit in Frameworks */,
 			);
@@ -234,6 +236,7 @@
 				EA7ED2DA2AAA63A400AAED80 /* SnapKit */,
 				EA3D4EE12AACBB4D001580FE /* Realm */,
 				EA3D4EE32AACBB4D001580FE /* RealmSwift */,
+				EA3D4F3E2AAF4287001580FE /* NotificationBannerSwift */,
 			);
 			productName = SeSACShopping;
 			productReference = EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */;
@@ -266,6 +269,7 @@
 			packageReferences = (
 				EA7ED2D92AAA63A400AAED80 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				EA3D4EE02AACBB4D001580FE /* XCRemoteSwiftPackageReference "realm-swift" */,
+				EA3D4F3D2AAF4287001580FE /* XCRemoteSwiftPackageReference "NotificationBanner" */,
 			);
 			productRefGroup = EA7ED2A22AA9AC1C00AAED80 /* Products */;
 			projectDirPath = "";
@@ -545,6 +549,14 @@
 				kind = branch;
 			};
 		};
+		EA3D4F3D2AAF4287001580FE /* XCRemoteSwiftPackageReference "NotificationBanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Daltron/NotificationBanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		EA7ED2D92AAA63A400AAED80 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -565,6 +577,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EA3D4EE02AACBB4D001580FE /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		EA3D4F3E2AAF4287001580FE /* NotificationBannerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA3D4F3D2AAF4287001580FE /* XCRemoteSwiftPackageReference "NotificationBanner" */;
+			productName = NotificationBannerSwift;
 		};
 		EA7ED2DA2AAA63A400AAED80 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
