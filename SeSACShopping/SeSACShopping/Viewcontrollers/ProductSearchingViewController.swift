@@ -100,6 +100,17 @@ class ProductSearchingViewController: BaseViewController {
         return view
     }()
     
+    let informationView = {
+        let view = EmptyView(image: UIImage(systemName: "rectangle.and.text.magnifyingglass"), text: "상품을 검색해보세요")
+        return view
+    }()
+    
+    let noDataView = {
+        let view = EmptyView(image: UIImage(systemName: "xmark.bin"), text: "검색된 상품이 없어요")
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,7 +129,7 @@ class ProductSearchingViewController: BaseViewController {
         sortButtons.forEach { $0.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)}
         
         sortButtons.forEach { sortButtonStackView.addArrangedSubview($0) }
-        [searchBar, sortButtonStackView, productCollectionView].forEach { view.addSubview($0) }
+        [searchBar, sortButtonStackView, productCollectionView, informationView, noDataView].forEach { view.addSubview($0) }
     }
     
     override func setConstraints() {
@@ -134,6 +145,16 @@ class ProductSearchingViewController: BaseViewController {
         
         productCollectionView.snp.makeConstraints { make in
             make.top.equalTo(sortButtonStackView.snp.bottom).offset(8)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        informationView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        noDataView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -153,8 +174,16 @@ extension ProductSearchingViewController {
                 self.productCollectionView.reloadData()
                 
                 if !self.products.isEmpty {
+                    self.noDataView.isHidden = true
+                    self.informationView.isHidden = true
+                    
                     self.sortButtonStackView.isHidden = false
+                    
                     self.productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                } else {
+                    print("no data")
+                    self.informationView.isHidden = true
+                    self.noDataView.isHidden = false
                 }
             }
         }
@@ -198,7 +227,11 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = ""
+        
+        informationView.isHidden = false
+        noDataView.isHidden = true
         sortButtonStackView.isHidden = true
+        
         products = []
         productCollectionView.reloadData()
     }

@@ -16,6 +16,8 @@
 		EA3D4EF22AADCBC3001580FE /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EF12AADCBC3001580FE /* ProductDetailViewController.swift */; };
 		EA3D4EF72AAE2A77001580FE /* SeSACSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EF62AAE2A77001580FE /* SeSACSearchBar.swift */; };
 		EA3D4F2F2AAEF63B001580FE /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F2E2AAEF63B001580FE /* FileManager+.swift */; };
+		EA3D4F362AAF242A001580FE /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F352AAF242A001580FE /* EmptyView.swift */; };
+		EA3D4F382AAF246F001580FE /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4F372AAF246F001580FE /* BaseView.swift */; };
 		EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */; };
 		EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */; };
 		EA7ED2AE2AA9AC1F00AAED80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		EA3D4EF12AADCBC3001580FE /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		EA3D4EF62AAE2A77001580FE /* SeSACSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACSearchBar.swift; sourceTree = "<group>"; };
 		EA3D4F2E2AAEF63B001580FE /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
+		EA3D4F352AAF242A001580FE /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		EA3D4F372AAF246F001580FE /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		EA7ED2A12AA9AC1C00AAED80 /* SeSACShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7ED2A42AA9AC1C00AAED80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7ED2A62AA9AC1C00AAED80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,14 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
+		EA3D4F342AAF2415001580FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D4F352AAF242A001580FE /* EmptyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EA7ED2982AA9AC1C00AAED80 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 				EA7ED2E92AABB39100AAED80 /* Custom */,
 				EA7ED2C52AA9BEA700AAED80 /* Base */,
 				EA7ED2BA2AA9B7B500AAED80 /* Viewcontrollers */,
+				EA3D4F342AAF2415001580FE /* Views */,
 				EA7ED2D82AAA635D00AAED80 /* Cells */,
 				EA7ED2AD2AA9AC1F00AAED80 /* Assets.xcassets */,
 				EA7ED2AF2AA9AC1F00AAED80 /* LaunchScreen.storyboard */,
@@ -149,6 +162,7 @@
 		EA7ED2C52AA9BEA700AAED80 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				EA3D4F372AAF246F001580FE /* BaseView.swift */,
 				EA7ED2C32AA9BE5700AAED80 /* BaseViewController.swift */,
 				EA7ED2D62AAA630F00AAED80 /* BaseCollectionViewCell.swift */,
 				EA7ED2E32AAB72C300AAED80 /* ReusableViewProtocol.swift */,
@@ -277,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA7ED2A52AA9AC1C00AAED80 /* AppDelegate.swift in Sources */,
+				EA3D4F382AAF246F001580FE /* BaseView.swift in Sources */,
 				EA3D4EF02AACEBAE001580FE /* Layout+.swift in Sources */,
 				EA3D4EF72AAE2A77001580FE /* SeSACSearchBar.swift in Sources */,
 				EA3D4F2F2AAEF63B001580FE /* FileManager+.swift in Sources */,
@@ -297,6 +312,7 @@
 				EA3D4EE72AACCB8B001580FE /* WishListRepository.swift in Sources */,
 				EA7ED2C42AA9BE5700AAED80 /* BaseViewController.swift in Sources */,
 				EA7ED2D32AAA508F00AAED80 /* SearchAPIManager.swift in Sources */,
+				EA3D4F362AAF242A001580FE /* EmptyView.swift in Sources */,
 				EA7ED2E42AAB72C300AAED80 /* ReusableViewProtocol.swift in Sources */,
 				EA7ED2CD2AAA434300AAED80 /* SearchEndpoint.swift in Sources */,
 				EA7ED2CA2AAA2ADB00AAED80 /* UIColor+.swift in Sources */,
