@@ -14,10 +14,8 @@ class ProductDetailViewController: BaseViewController {
     
     var productTitle: String?
     var productId: String?
-    
-    var index: Int?
-    
-    var wishListButtonClickedClosure: ((Int) -> Void)?
+        
+    var wishListButtonClickedClosure: (() -> Void)?
     
     var webView = WKWebView()
     
@@ -69,11 +67,10 @@ class ProductDetailViewController: BaseViewController {
         let (isWish, item) = wishListRepository.checkItemExistence(by: id)
         
         if let item = item {
+            self.removeImageFromDocument(fileName: fileName(id: item.productId))
             wishListRepository.deleteItem(item)
         } else {
-            guard let index = self.index else { return }
-            
-            wishListButtonClickedClosure?(index)
+            wishListButtonClickedClosure?()
         }
         
         setWishButtonImage(isWish: !isWish)

@@ -218,6 +218,7 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         let (isWish, wishItem) = wishListRepository.checkItemExistence(by: product.productId)
         
         cell.setData(isWish: isWish,
+                     image: nil,
                      imageUrl: product.image,
                      mallName: product.mallName,
                      title: product.title,
@@ -225,11 +226,15 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         cell.wishListButtonClickedClosure = {
             if let item = wishItem {
+                self.removeImageFromDocument(fileName: self.fileName(id: item.productId))
                 self.wishListRepository.deleteItem(item)
             } else {
                 let item = self.wishListRepository.convertToWishList(from: product)
                 
                 self.wishListRepository.addItem(item)
+                if let image = cell.productImage.image {
+                    self.saveImageToDocument(fileName: self.fileName(id: item.productId), image: image)
+                }
             }
             
             collectionView.reloadItems(at: [indexPath])
@@ -243,14 +248,18 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
         
         let vc = ProductDetailViewController()
         
-        vc.index = indexPath.item
         vc.productTitle = product.title
         vc.productId = product.productId
         
-        vc.wishListButtonClickedClosure = { index in
+        vc.wishListButtonClickedClosure = {
             let item = self.wishListRepository.convertToWishList(from: product)
             
             self.wishListRepository.addItem(item)
+            
+            self.downloadImage(from: product.image) { image in
+                let name = self.fileName(id: product.productId)
+                self.saveImageToDocument(fileName: name, image: image)
+            }
         }
         
         navigationController?.pushViewController(vc, animated: true)

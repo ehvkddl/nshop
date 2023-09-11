@@ -12,7 +12,7 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
     
     var wishListButtonClickedClosure: (() -> Void)?
     
-    let image = {
+    let productImage = {
         let img = UIImageView()
         
         img.image = UIImage(systemName: "cube.box")
@@ -71,7 +71,7 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
     }()
     
     override func prepareForReuse() {
-        image.image = nil
+        productImage.image = nil
         wishButton.setImage(UIImage(systemName: "heart"), for: .normal)
         wishButton.tintColor = .gray
     }
@@ -80,23 +80,23 @@ class ProductCollectionViewCell: BaseCollectionViewCell {
         wishButton.addTarget(self, action: #selector(wishListButtonClicked), for: .touchUpInside)
         
         [mallNameLabel, titleLabel, lpriceLabel].forEach { stackView.addArrangedSubview($0) }
-        [image, wishButton, stackView].forEach { contentView.addSubview($0) }
+        [productImage, wishButton, stackView].forEach { contentView.addSubview($0) }
     }
     
     override func setConstraints() {
-        image.snp.makeConstraints { make in
+        productImage.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(contentView)
             make.height.equalTo(contentView.snp.width).multipliedBy(1)
         }
         
         wishButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(image).inset(7)
+            make.trailing.bottom.equalTo(productImage).inset(7)
             make.size.equalTo(35)
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(image.snp.bottom).offset(7)
-            make.horizontalEdges.equalTo(image).inset(3)
+            make.top.equalTo(productImage.snp.bottom).offset(7)
+            make.horizontalEdges.equalTo(productImage).inset(3)
         }
     }
     
@@ -110,12 +110,17 @@ extension ProductCollectionViewCell {
     
     func setData(
         isWish: Bool,
+        image: UIImage?,
         imageUrl: String,
         mallName: String,
         title: String,
         lprice: String
     ) {
-        image.load(from: imageUrl)
+        if let image = image {
+            self.productImage.image = image
+        } else {
+            productImage.load(from: imageUrl)
+        }
         mallNameLabel.text = "[\(mallName)]"
         titleLabel.text = title.removeTag()
         lpriceLabel.text = lprice.setComma()

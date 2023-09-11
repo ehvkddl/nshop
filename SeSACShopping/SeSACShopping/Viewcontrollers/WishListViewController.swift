@@ -109,13 +109,17 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         
         let item = wishList[indexPath.item]
         
+        let image = loadImageFromDocument(fileName: fileName(id: item.productId))
+        
         cell.setData(isWish: true,
+                     image: image,
                      imageUrl: item.image,
                      mallName: item.mallName,
                      title: item.title,
                      lprice: item.lprice)
         
         cell.wishListButtonClickedClosure = {
+            self.removeImageFromDocument(fileName: self.fileName(id: item.productId))
             self.wishListRepository.deleteItem(item)
         }
         
