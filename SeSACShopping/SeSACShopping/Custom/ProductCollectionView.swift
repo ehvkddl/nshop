@@ -9,10 +9,20 @@ import UIKit
 
 class ProductCollectionView: UICollectionView {
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    enum CellType {
+        case search
+        case wishList
+    }
+    
+    init(_ type: CellType = .search, frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
-        register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        switch type {
+        case .search:
+            register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        case .wishList:
+            register(WishListCollectionViewCell.self, forCellWithReuseIdentifier: WishListCollectionViewCell.identifier)
+        }
         
         if #available(iOS 15.0, *) { }
         else {

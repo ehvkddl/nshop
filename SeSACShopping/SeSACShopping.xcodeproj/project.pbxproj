@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0A14002BAECDA1009F1415 /* WishListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A13FF2BAECDA1009F1415 /* WishListCollectionViewCell.swift */; };
 		EA3D4EE22AACBB4D001580FE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4EE12AACBB4D001580FE /* Realm */; };
 		EA3D4EE42AACBB4D001580FE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EA3D4EE32AACBB4D001580FE /* RealmSwift */; };
 		EA3D4EE72AACCB8B001580FE /* WishListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA0A13FF2BAECDA1009F1415 /* WishListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA3D4EE62AACCB8B001580FE /* WishListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListRepository.swift; sourceTree = "<group>"; };
 		EA3D4EE92AACDCE1001580FE /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
 		EA3D4EEB2AACE6FD001580FE /* ProductCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7ED2E12AAB4F3B00AAED80 /* ProductCollectionViewCell.swift */,
+				EA0A13FF2BAECDA1009F1415 /* WishListCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				EA7ED2D72AAA630F00AAED80 /* BaseCollectionViewCell.swift in Sources */,
 				EA7ED2E22AAB4F3B00AAED80 /* ProductCollectionViewCell.swift in Sources */,
 				EA7ED2EB2AABB50B00AAED80 /* FilterButton.swift in Sources */,
+				EA0A14002BAECDA1009F1415 /* WishListCollectionViewCell.swift in Sources */,
 				EA3D4EEC2AACE6FD001580FE /* ProductCollectionView.swift in Sources */,
 				EA7ED2D12AAA47B000AAED80 /* URL+.swift in Sources */,
 				EA7ED2A72AA9AC1C00AAED80 /* SceneDelegate.swift in Sources */,

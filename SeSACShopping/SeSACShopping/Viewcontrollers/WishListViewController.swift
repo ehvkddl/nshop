@@ -27,10 +27,12 @@ class WishListViewController: BaseViewController {
     }()
     
     private lazy var wishListCollectionView = {
-        let view = ProductCollectionView(frame: .zero, collectionViewLayout: productCollectionViewLayout())
+        let view = ProductCollectionView(.wishList, frame: .zero, collectionViewLayout: wishListCollectionViewLayout())
         
         view.delegate = self
         view.dataSource = self
+        
+        view.backgroundColor = .systemGray6
         
         return view
     }()
@@ -73,7 +75,7 @@ class WishListViewController: BaseViewController {
         super.setConstraints()
         
         searchBar.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview().inset(8)
         }
         
@@ -117,12 +119,13 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WishListCollectionViewCell.identifier, for: indexPath) as? WishListCollectionViewCell else { return UICollectionViewCell() }
         
         let item = wishList[indexPath.item]
         
         let image = loadImageFromDocument(fileName: fileName(id: item.productId))
         
+        cell.backgroundColor = .white
         cell.setData(isWish: true,
                      image: image,
                      imageUrl: item.image,
@@ -147,6 +150,22 @@ extension WishListViewController: UICollectionViewDelegate, UICollectionViewData
         vc.productId = item.productId
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+extension WishListViewController {
+    
+    func wishListCollectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 8
+        let width = UIScreen.main.bounds.width
+        
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: width, height: width * 0.33)
+        layout.minimumLineSpacing = spacing
+        
+        return layout
     }
     
 }
