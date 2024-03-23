@@ -5,10 +5,10 @@
 
 상품을 검색하고 마음에 드는 상품을 저장할 수 있는 앱
 
-|<img width="200" src="./images/search.gif">|<img width="200" src="./images/filter.gif">|<img width="200" src="./images/detailView.gif">|<img width="200" src="./images/infinite_scroll.gif">|
+|<img width="180" src="./images/search.gif">|<img width="180" src="./images/filter.gif">|<img width="180" src="./images/detailView.gif">|<img width="180" src="./images/infinite_scroll.gif">|
 |:-:|:-:|:-:|:-:|
 |검색|필터|상세 화면|무한 스크롤|
-|<img width="200" src="./images/wish.gif">|<img width="200" src="./images/searchWish.gif">|<img width="200" src="./images/deleteWish.gif">|
+|<img width="180" src="./images/wishListAdd.gif">|<img width="180" src="./images/wishListSearch.gif">|<img width="180" src="./images/wishListDelete.gif">|
 |찜목록|찜목록 검색|찜목록 삭제|
 
 
@@ -150,19 +150,23 @@ extension ProductSearchingViewController: UISearchBarDelegate {
 
 ```swift
 func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-    for indexPath in indexPaths {
-        if products.count - 1 == indexPath.item && !isEnd {
-            page += 1
+    indexPaths.forEach { indexpath in
+        guard products.count - 1 == indexpath.item else { return }
+        guard !isEnd else { return }
+        
+        page += 1
+        
+        guard let productName = searchBar.text,
+              !productName.isEmpty else { return }
+        
+        searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { [unowned self] data in
+            total = data.total
+            products.append(contentsOf: data.items)
             
-            guard let productName = searchBar.text, !productName.isEmpty else { return }
+            print("[total]", data.total, "  [start]", data.start, "  [display]", data.display)
             
-            searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { data in
-                self.total = data.total
-                self.products.append(contentsOf: data.items)
-                
-                DispatchQueue.main.async {
-                    self.productCollectionView.reloadData()
-                }
+            DispatchQueue.main.async {
+                self.productCollectionView.reloadData()
             }
         }
     }
