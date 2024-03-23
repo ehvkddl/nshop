@@ -49,6 +49,7 @@ class ProductSearchingViewController: BaseViewController {
         let view = SeSACSearchBar()
         view.delegate = self
         view.placeholder = "어떤 상품을 찾고 계시나요?"
+        view.searchTextField.autocapitalizationType = .none
         return view
     }()
     
@@ -308,21 +309,23 @@ extension ProductSearchingViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            if products.count - 1 == indexPath.item && page <= (total / display) && isEnd == false {
-                page += 1
+        indexPaths.forEach { indexpath in
+            guard products.count - 1 == indexpath.item else { return }
+            guard !isEnd else { return }
+            
+            page += 1
+            
+            guard let productName = searchBar.text,
+                  !productName.isEmpty else { return }
+            
+            searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { [unowned self] data in
+                total = data.total
+                products.append(contentsOf: data.items)
                 
-                guard let productName = searchBar.text, !productName.isEmpty else { return }
+                print("[total]", data.total, "  [start]", data.start, "  [display]", data.display)
                 
-                searchManager.fetchProduct(name: productName, display: display, start: start, sort: sort.text) { data in
-                    self.total = data.total
-                    self.products.append(contentsOf: data.items)
-                    
-                    print("[total]", data.total, "  [start]", data.start, "  [display]", data.display)
-                    
-                    DispatchQueue.main.async {
-                        self.productCollectionView.reloadData()
-                    }
+                DispatchQueue.main.async {
+                    self.productCollectionView.reloadData()
                 }
             }
         }
