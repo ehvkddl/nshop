@@ -28,6 +28,7 @@ enum SortType: Int, CaseIterable {
 class ProductSearchingViewController: BaseViewController {
     
     let searchManager = SearchAPIManager()
+    private let debouncer = Debouncer(seconds: 1)
     
     let wishListRepository = WishListRepository()
     
@@ -212,11 +213,7 @@ extension ProductSearchingViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         
-        page = 1
-        sort = .sim
-        
-        sortButtonStackView.isHidden = true
-        self.accuracyButton.configure(isSelected: true)
+        setFirstSearch()
 
         firstFetch()
     }
@@ -231,6 +228,21 @@ extension ProductSearchingViewController: UISearchBarDelegate {
         
         products = []
         productCollectionView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        debouncer.run { [unowned self] in
+            setFirstSearch()
+            firstFetch()
+        }
+    }
+    
+    func setFirstSearch() {
+        page = 1
+        sort = .sim
+        
+        sortButtonStackView.isHidden = true
+        self.accuracyButton.configure(isSelected: true)
     }
     
 }
