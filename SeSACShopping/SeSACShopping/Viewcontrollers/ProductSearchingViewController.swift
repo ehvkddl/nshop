@@ -49,6 +49,7 @@ class ProductSearchingViewController: BaseViewController {
         let view = SeSACSearchBar()
         view.delegate = self
         view.placeholder = "어떤 상품을 찾고 계시나요?"
+        view.searchTextField.autocapitalizationType = .none
         return view
     }()
     
